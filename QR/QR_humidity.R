@@ -54,21 +54,26 @@ for (j in 1:n_files){
 z = apply(X %*% coef, 2, function(b) {
   c(matrix(b, ncol=upper_year))
 })
+
+# Reshape z
+z1 = t(z)
+dim(z1)<-c(5,13140,35)
+zm = apply(z1, c(1,2), mean)
+zm = t(zm)
+
 matplot(t(pt1), type='p',pch=1,col='gray', ylim=c(0,0.03), ylab='specific humidity',
         xlab = 'Day of the year')
 par(new=TRUE)
-matplot(z[1:365,],type = 'l',pch=1:5,col = 1:5, ylim=c(0,0.03), ylab='specific humidity',
+matplot(zm[1:365,],type = 'l',pch=1:5,col = 1:5, ylim=c(0,0.03), ylab='specific humidity',
         xlab = 'Day of the year') #plot
 legend(0,0.03, legend = qq, col=1:5, pch=1) # optional legend)
 title('quantile fit of daily specific humidity at NYC in 1990')
 
 # plot quantile coefficient in the last year
-
-
 matplot(t(pt2), type='p',pch=1,col='gray', ylim=c(0,0.03), ylab='specific humidity',
         xlab = 'Day of the year')
 par(new=TRUE)
-matplot(z[(13140-365+1):13140,],type='l',pch=1:5,col = 1:5, ylim=c(0,0.03),ylab='specific humidity',
+matplot(zm[(13140-365+1):13140,],type='l',pch=1:5,col = 1:5, ylim=c(0,0.03),ylab='specific humidity',
         xlab = 'Day of the year') #plot
 
 legend(0,0.03, legend = qq, col=1:5, pch=1) # optional legend)
