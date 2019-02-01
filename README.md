@@ -3,6 +3,6 @@ This repo conatains code for the heat-wave changes project in the statistics of 
 
 It include two parts:
 
-a. Data validation;
+a. Data diagnostics;
 
 b. Quantile regression;
